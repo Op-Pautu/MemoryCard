@@ -31,11 +31,11 @@ export default function CardList({
   const shuffledCards = shuffle(cardList);
 
   //display only 10 cards
-  shuffledCards.length = 10;
+  const selectedCards = shuffledCards.slice(0, 10);
 
   return (
     <div className="cardList">
-      {shuffledCards.map((card) => {
+      {selectedCards.map((card) => {
         return (
           <div className="card-container">
             <Card
