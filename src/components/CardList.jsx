@@ -28,16 +28,17 @@ export default function CardList({
     return array;
   };
 
+  const isMobile = window.innerWidth <= 850;
+  const numberOfCardsToDisplay = isMobile ? 5 : 10;
+
   const shuffledCards = shuffle(cardList);
 
-  //display only 10 cards
-  const selectedCards = shuffledCards.slice(0, 10);
-
+  const selectedCards = shuffledCards.slice(0, numberOfCardsToDisplay);
   return (
     <div className="cardList">
       {selectedCards.map((card) => {
         return (
-          <div className="card-container">
+          <div className="card-container" key={card.id}>
             <Card
               key={card.id}
               id={card.id}
