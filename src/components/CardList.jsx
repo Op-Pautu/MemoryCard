@@ -3,7 +3,7 @@ import Card from "./Card";
 
 export default function CardList({
   cardList,
-  shuffle,
+
   score,
   setScore,
   bestScore,
@@ -11,6 +11,23 @@ export default function CardList({
   clickedCards,
   setClickedCards,
 }) {
+  const shuffle = (array) => {
+    let currentIndex = array.length,
+      temporaryValue,
+      randomIndex;
+
+    while (0 !== currentIndex) {
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex -= 1;
+
+      temporaryValue = array[currentIndex];
+      array[currentIndex] = array[randomIndex];
+      array[randomIndex] = temporaryValue;
+    }
+
+    return array;
+  };
+
   const shuffledCards = shuffle(cardList);
 
   //display only 10 cards
@@ -34,6 +51,7 @@ export default function CardList({
               clickedCards={clickedCards}
               setClickedCards={setClickedCards}
               shuffle={shuffle}
+              cards={cardList}
             />
           </div>
         );

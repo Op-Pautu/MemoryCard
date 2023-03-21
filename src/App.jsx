@@ -8,22 +8,7 @@ function App() {
   const [score, setScore] = useState(0);
   const [bestScore, setBestScore] = useState(0);
   const [clickedCards, setClickedCards] = useState([]);
-  const shuffle = (array) => {
-    let currentIndex = array.length,
-      temporaryValue,
-      randomIndex;
 
-    while (0 !== currentIndex) {
-      randomIndex = Math.floor(Math.random() * currentIndex);
-      currentIndex -= 1;
-
-      temporaryValue = array[currentIndex];
-      array[currentIndex] = array[randomIndex];
-      array[randomIndex] = temporaryValue;
-    }
-
-    return array;
-  };
   return (
     <div className="App">
       <div className="header">
@@ -36,13 +21,13 @@ function App() {
 
       <CardList
         cardList={cards}
-        shuffle={shuffle}
         score={score}
         setScore={setScore}
         setBestScore={setBestScore}
         bestScore={bestScore}
         clickedCards={clickedCards}
         setClickedCards={setClickedCards}
+        setCards={setCards}
       />
     </div>
   );

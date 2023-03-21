@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 export default function Card({
   id,
@@ -11,6 +11,7 @@ export default function Card({
   clickedCards,
   setClickedCards,
   shuffle,
+  cards,
 }) {
   const handleClick = () => {
     // Check if the card has already been clicked
@@ -32,12 +33,18 @@ export default function Card({
     shuffle(cards);
   };
 
+  useEffect(() => {
+    const prevBestScore = parseInt(localStorage.getItem("bestScore")) || 0;
+    if (score > prevBestScore) {
+      localStorage.setItem("bestScore", score.toString());
+      setBestScore(score);
+    } else {
+      setBestScore(prevBestScore);
+    }
+  }, [score, setBestScore]);
+
   return (
-    <div
-      className="card"
-      // update score
-      onClick={handleClick}
-    >
+    <div className="card" onClick={handleClick}>
       <img
         src={`https://robohash.org/${id}?size=200x200&set=set4`}
         alt="cats"
